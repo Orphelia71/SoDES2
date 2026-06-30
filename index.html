@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONG SoDES -- Soutien au Développement par l'Éducation et la Solidarité</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="top-marquee">
+            <div class="marquee-content">
+                SOUTIEN AU DEVELOPPEMENT PAR L'EDUCATION ET LA SOLIDARITE -- ONG SoDES -- SOUTIEN AU DEVELOPPEMENT PAR
+                L'EDUCATION ET LA SOLIDARITE
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <div class="nav-logo">
+                <a href="index.html"><img src="images/logo.png" alt="Logo ONG SoDES"></a>
+            </div>
+
+            <!-- 💻 MENU NAVIGATION CLASSIQUE (Visible sur PC, masqué sur Mobile via CSS) -->
+            <ul class="nav-links-desktop">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="a-propos.html">A Propos</a></li>
+                <li><a href="projets.php">Projets réalisés</a></li>
+                <li><a href="galerie.php">Galerie</a></li>
+                <li><a href="contact.php">Nous contacter</a></li>
+            </ul>
+
+            <div class="drawer-action-zone">
+                <a href="contact.php" class="drawer-cta-btn">💛 Faire un don</a>
+            </div>
+
+            <!-- 🍔 BOUTON MENU BURGER (Invisible sur PC, visible sur Mobile) -->
+            <button id="burger-open-btn" class="burger-icon-trigger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- 📱 MENU TIROIR BLEU (Mobile) -->
+            <div id="mobile-drawer-menu" class="mobile-navigation-drawer">
+                <button id="burger-close-btn" class="close-drawer-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <!-- La liste contient uniquement les pages classiques -->
+                <ul class="drawer-links-list">
+                    <li><a href="index.html" class="drawer-link active">Accueil</a></li>
+                    <li><a href="a-propos.html" class="drawer-link">A Propos</a></li>
+                    <li><a href="projets.php" class="drawer-link">Projets réalisés</a></li>
+                    <li><a href="galerie.php" class="drawer-link">Galerie</a></li>
+                    <li><a href="contact.php" class="drawer-link">Nous contacter</a></li>
+                </ul>
+
+                <!-- 💛 ICI : Le bouton "Faire un don" isolé tout en bas du menu -->
+                <div class="drawer-action-zone">
+                    <a href="contact.php" class="drawer-cta-btn">💛 Faire un don</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil" class="hero-section">
+
+            <div class="hero-content">
+                <span class="badge-location fade-in-up">● ONG ACTIVE AU BENIN</span>
+
+                <h1 class="fade-in-up delay-1">
+                    L'éducation comme levier de <span class="highlight-yellow">développement</span> et de solidarité
+                </h1>
+
+                <p class="hero-description fade-in-up delay-2">
+                    SoDES acts pour offrir aux enfants et aux jeunes un accès équitable à l'éducation grâce à des
+                    actions concrètes et solidaires.
+                </p>
+
+                <div class="hero-actions fade-in-up delay-3">
+                    <a href="#programmes" class="btn-action-yellow">Voir nos programmes</a>
+                    <a href="contact.php" class="btn-action-outline">❤ Faire un don</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="images/accueil.jpg" alt="Enfants en classe au Bénin">
+            </div>
+
+        </section>
+
+        <section id="qui-sommes-nous" class="about-section">
+            <div class="about-container">
+
+                <div class="about-text">
+                    <span class="section-badge">QUI SOMMES-NOUS</span>
+                    <h2>Présentation de SoDES</h2>
+                    <div class="title-underline"></div>
+
+                    <p class="about-lead">
+                        <strong>SoDES</strong> (Soutien au Développement par l'Éducation et la Solidarité) est une
+                        organisation engagée dans la promotion de l'éducation et de l'entraide.
+                    </p>
+                    <p class="about-description">
+                        Nous accompagnons les communautés à travers des initiatives éducatives durables et inclusives.
+                    </p>
+
+                    <ul class="about-list">
+                        <li>
+                            <span class="list-icon">■</span>
+                            <p><strong>Soutien à l'éducation</strong> - scolarisation, fournitures, bourses</p>
+                        </li>
+                        <li>
+                            <span class="list-icon">■</span>
+                            <p><strong>Développement communautaire</strong> - formations, autonomisation</p>
+                        </li>
+                        <li>
+                            <span class="list-icon">■</span>
+                            <p><strong>Partenariats solide</strong> - ONG, institutions</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="about-image-wrapper">
+                    <div class="about-image-bg">
+                        <img src="images/logo.png" alt="Grand Logo de l'ONG SoDES" class="about-main-img">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="impact-section">
+            <div class="impact-container">
+
+                <div class="impact-header">
+                    <span class="impact-badge">NOTRE IMPACT</span>
+                    <h2>Des résultats concrets sur le terrain</h2>
+                </div>
+
+                <div class="impact-grid">
+
+                    <!-- Carte 1 : Enfants touchés -->
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <i class="fa-solid fa-children"></i>
+                        </div>
+                        <h3 class="impact-number" data-target="10000" data-suffix="+">10,000+</h3>
+                        <p class="impact-label">Enfants touchés</p>
+                    </div>
+
+                    <!-- Carte 2 : Récoltés -->
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <h3 class="impact-number" data-target="150" data-suffix="M+">150M+</h3>
+                        <p class="impact-label">Récoltés</p>
+                    </div>
+
+                    <!-- Carte 3 : Campagnes -->
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                        </div>
+                        <h3 class="impact-number" data-target="10" data-suffix="">10</h3>
+                        <p class="impact-label">Campagnes</p>
+                    </div>
+
+                    <!-- Carte 4 : Partenaires -->
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h3 class="impact-number" data-target="4" data-suffix="" data-pad="true">04</h3>
+                        <p class="impact-label">Partenaires</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="programmes" class="programs-section">
+            <div class="programs-container">
+
+                <div class="programs-header">
+                    <span class="section-badge">Nos programmes</span>
+                    <h2>Des projets à fort impact éducatif</h2>
+                    <p class="programs-subtitle">Découvrez nos initiatives en cours et comment elles transforment des
+                        vies au quotidien.</p>
+                </div>
+
+                <div class="programs-grid">
+
+                    <div class="program-card">
+                        <div class="program-card-header card-blue">
+                            <img src="images/icon1.png" alt="Icône Éducation" class="program-icon">
+                        </div>
+                        <div class="program-card-body">
+                            <span class="program-badge badge-blue">EDUCATION</span>
+                            <h3>Scolarisation des jeunes filles</h3>
+                            <p class="program-text">Soutien à la scolarisation des filles issues de milieux défavorisés
+                                dans les zones rurales.</p>
+
+                            <div class="progress-container">
+                                <div class="progress-labels">
+                                    <span class="progress-title">Progression</span>
+                                    <span class="progress-percentage">62 %</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill fill-blue" style="width: 62%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div class="program-card-header card-grey">
+                            <img src="images/icon2.png" alt="Icône Formation" class="program-icon">
+                        </div>
+                        <div class="program-card-body">
+                            <span class="program-badge badge-red">FORMATION</span>
+                            <h3>Formation professionnelle</h3>
+                            <p class="program-text">Apprentissage de métiers et compétences pour les jeunes sans emploi
+                                des communes rurales.</p>
+
+                            <div class="progress-container">
+                                <div class="progress-labels">
+                                    <span class="progress-title">Progression</span>
+                                    <span class="progress-percentage">48 %</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill fill-red" style="width: 48%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div class="program-card-header card-yellow">
+                            <img src="images/icon3.png" alt="Icône Solidarité" class="program-icon">
+                        </div>
+                        <div class="program-card-body">
+                            <span class="program-badge badge-yellow">SOLIDARITE</span>
+                            <h3>Partage de Kits scolaires</h3>
+                            <p class="program-text">Distribution de fournitures scolaires aux enfants les plus
+                                vulnérables avant chaque rentrée.</p>
+
+                            <div class="progress-container">
+                                <div class="progress-labels">
+                                    <span class="progress-title">Progression</span>
+                                    <span class="progress-percentage">68 %</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill fill-yellow" style="width: 68%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="programs-footer-action">
+                    <a href="projets.php" class="btn-all-projects">Voir tous les projets &rarr;</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="temoignages" class="testimonials-section">
+            <div class="testimonials-container">
+
+                <div class="testimonials-header">
+                    <span class="section-badge">TEMOIGNAGES</span>
+                    <h2>Ils témoignent de notre impact</h2>
+                </div>
+
+                <div class="testimonials-grid">
+
+                    <div class="testimonial-card">
+                        <div class="quote-icon">”</div>
+                        <p class="testimonial-text">
+                            Grâce à SoDES, ma fille a pu rester à l'école malgré nos difficultés. Aujourd'hui elle est
+                            en classe de 4ème. Je n'aurais jamais imaginé cela possible sans leur soutien.
+                        </p>
+                        <div class="testimonial-user">
+                            <div class="user-avatar avatar-blue">AM</div>
+                            <div class="user-info">
+                                <h4>NOV</h4>
+                                <p>Mère d'élève, Parakou</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="quote-icon">”</div>
+                        <p class="testimonial-text">
+                            Le programme de formation professionnelle a transformé notre village. Plusieurs jeunes ont
+                            maintenant leur propre activité et contribuent à l'économie locale.
+                        </p>
+                        <div class="testimonial-user">
+                            <div class="user-avatar avatar-blue">KD</div>
+                            <div class="user-info">
+                                <h4>Pierre KOKOU</h4>
+                                <p>Chef quartier, Natitingou</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="slider-controls">
+                    <button class="btn-arrow" aria-label="Précédent">&lsaquo;</button>
+                    <button class="btn-arrow" aria-label="Suivant">&rsaquo;</button>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="movement-section">
+            <div class="movement-container">
+
+                <h2 class="movement-title">Rejoignez le mouvement SoDES</h2>
+
+                <p class="movement-text">
+                    Votre soutien, quel que soit sa forme, contribue directement à changer des vies.
+                    Faites un don, devenez bénévole ou partenaire.
+                </p>
+
+                <div class="movement-buttons">
+                    <a href="contact.php" class="btn-volunteer">Devenir bénévole</a>
+
+                    <a href="contact.php" class="btn-donate">
+                        <span class="heart-icon">❤</span> Faire un don
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-socials">
+                <a href="#" class="social-box" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-box" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-box" aria-label="X">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+            </div>
+
+            <div class="footer-divider">
+                <span class="divider-dot dot-left"></span>
+                <hr class="divider-line">
+                <span class="divider-dot dot-right"></span>
+            </div>
+
+            <p class="footer-copyright">
+                &copy; 2026 SoDES. Tous droits réservés.
+            </p>
+
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

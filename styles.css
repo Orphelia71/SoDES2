@@ -1,0 +1,2645 @@
+/* ==========================================================================
+   1. VARIABLES DE COULEURS & COHÉRENCE VISUELLE
+   ========================================================================== */
+:root {
+    --primary-blue: #1c4f9b;       /* Bleu de la section Hero */
+    --dark-blue: #1c4f9b;          /* Bleu foncé du bouton du menu */
+    --accent-yellow: #fbc02d;      /* Jaune pour les boutons et mise en valeur */
+    --success-green: #0d8243;      /* Vert pour les badges "Nos programmes", "Impact"... */
+    --text-dark: #1a1a1a;          /* Couleur des titres sombres */
+    --text-light: #ffffff;         /* Blanc pour les textes sur fond bleu */
+    --bg-light: #f4f6f9;           /* Fond très clair pour casser le blanc pur */
+}
+
+/* Reset de base et police */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* Permet le défilement fluide indispensable au One Page */
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. HEADER & BARRE DE DÉFILEMENT (MARQUEE)
+   ========================================================================== */
+.main-header {
+    width: 100%;
+    position: fixed; /* Reste fixé en haut pendant le défilement */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: var(--text-light);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Effet de texte défilant tout en haut */
+.top-marquee {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 6px 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 25s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* Barre de navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.nav-logo img {
+    height: 70px; /* Ajuste selon la taille réelle de ton logo */
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-blue);
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--primary-blue);
+}
+
+/* Trait de soulignement sous le lien actif (comme sur image_4.png) */
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-blue);
+    border-radius: 2px;
+}
+
+/* Bouton Faire un don du menu */
+.btn-primary-dark {
+    background-color: var(--dark-blue);
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary-dark:hover {
+    background-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+/* Navigation desktop / mobile */
+.nav-links-desktop {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links-desktop a {
+    text-decoration: none;
+    color: var(--dark-blue);
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-links-desktop a:hover,
+.nav-links-desktop a.active {
+    color: var(--primary-blue);
+}
+
+.nav-links-desktop a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-blue);
+    border-radius: 2px;
+}
+
+.burger-icon-trigger {
+    display: none;
+    border: none;
+    background: transparent;
+    color: var(--primary-blue);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.mobile-navigation-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(85vw, 320px);
+    height: 100vh;
+    background: #ffffff;
+    color: black;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: right 0.3s ease;
+    z-index: 1100;
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-navigation-drawer.is-open {
+    left: 0;
+    right: auto;
+}
+
+.close-drawer-btn {
+    align-self: flex-end;
+    background: transparent;
+    border: none;
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.drawer-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.drawer-links-list a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.drawer-links-list a.active {
+    color: var(--accent-yellow);
+}
+
+.drawer-action-zone {
+    display: flex;
+    align-items: center;
+}
+
+.drawer-cta-btn {
+    display: inline-block;
+    padding: 12px 16px;
+    background: #1C4F9B;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: auto;
+}
+
+@media (max-width: 900px) {
+    .nav-links-desktop {
+        display: none;
+    }
+
+    .navbar > .drawer-action-zone {
+        display: none;
+    }
+
+    .burger-icon-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   3. SECTION ACCUEIL (HERO SECTION - SPLIT SCREEN)
+   ========================================================================== */
+.hero-section {
+    display: flex;
+    min-height: calc(100vh - 80px); /* Prend toute la hauteur moins le header */
+    margin-top: 85px; /* Compense le header fixe */
+    background-color: var(--primary-blue);
+}
+
+/* Bloc de gauche : Contenu textuel */
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 5%;
+    color: var(--text-light);
+}
+
+/* Petit badge vert */
+.badge-location {
+    background-color: rgba(13, 130, 67, 0.2); /* Fond translucide */
+    color: #26e67b; /* Vert plus lumineux pour le contraste sur fond bleu */
+    border: 1px solid #26e67b;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    width: fit-content;
+    margin-bottom: 30px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+/* Mot mis en évidence en jaune */
+.highlight-yellow {
+    color: var(--accent-yellow);
+}
+
+.hero-description {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    max-width: 550px;
+}
+
+/* Groupe de boutons d'action */
+.hero-actions {
+    display: flex;
+    gap: 20px;
+}
+
+
+
+/* Bouton jaune plain */
+.btn-action-yellow {
+    background-color: var(--accent-yellow);
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-action-yellow:hover {
+    background-color: #e5a413;
+    transform: translateY(-2px);
+}
+
+/* Bouton transparent avec bordure jaune */
+.btn-action-outline {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--accent-yellow);
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.btn-action-outline:hover {
+    background-color: var(--accent-yellow);
+    color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+/* Bloc de droite : Image */
+.hero-image {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Permet à l'image de remplir parfaitement l'espace sans se déformer */
+}
+
+/* Responsive pour les écrans de smartphones et tablettes */
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column; /* On empile le texte et l'image sur les petits écrans */
+    }
+    
+    .hero-content {
+        padding: 40px 5%;
+    }
+    
+    .hero-content h1 {
+        font-size: 34px;
+    }
+    
+    .hero-image {
+        height: 350px;
+    }
+    
+    .nav-links {
+        display: none; /* À remplacer plus tard par un menu burger pour mobile */
+    }
+}
+/* Importation de la police Inter pour ressembler à Figma */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Application de la police */
+}
+
+/* ==========================================================================
+   CORRECTION TRAIT POUR TRAIT DE LA SECTION À PROPOS
+   ========================================================================== */
+.about-section {
+    padding: 80px 8%; /* Augmentation des marges sur les côtés */
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    max-width: 1200px;
+    width: 100%;
+    gap: 60px;
+    align-items: center; /* Aligne verticalement le bloc texte et le bloc image */
+}
+
+.about-text {
+    width: 100%;
+}
+
+.section-badge {
+    color: #0d8243; /* Ton vert forêt */
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.about-text h2 {
+    font-size: 34px;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.title-underline {
+    width: 130px;
+    height: 3px;
+    background: linear-gradient(to right, #154fa6 40%, #0d8243 40%);
+    margin-bottom: 35px;
+}
+
+.about-lead {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #222222;
+    margin-bottom: 18px;
+}
+
+.about-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555555;
+    margin-bottom: 35px;
+}
+
+/* Correction de la liste pour éviter le bug d'image_10 */
+.about-list {
+    list-style: none;
+}
+
+.about-list li {
+    font-size: 15px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-start; /* Aligne le carré vert avec la première ligne du texte */
+}
+
+.about-list li p {
+    color: #333333;
+    line-height: 1.4;
+}
+
+.list-icon {
+    color: #0d8243;
+    margin-right: 12px;
+    font-size: 11px;
+    margin-top: 3px; /* Aligne parfaitement le petit carré noir/vert */
+}
+
+/* ==========================================================================
+   CORRECTION DU BLOC IMAGE (CENTRAGE PARFAIT)
+   ========================================================================== */
+.about-image-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.about-image-bg {
+    background-color: #b3bfd1; /* Le bleu/gris clair de Figma */
+    width: min(100%, 485px);
+    height: 320px; /* Hauteur fixe pour correspondre aux proportions de l'image */
+    border-radius: 24px; /* Arrondis prononcés de Figma */
+    display: flex;
+    justify-content: center; /* Centre horizontalement le logo blanc */
+    align-items: center;     /* Centre verticalement le logo blanc */
+    padding: 20px;
+}
+
+.about-main-img {
+    max-width: 85%; /* Évite que le logo ne colle aux bords du rectangle bleu */
+    max-height: 85%;
+    object-fit: contain;
+    background-color: #b3bfd1;
+    border-radius: 12px;
+    
+}
+/* ==========================================================================
+   12. ACCUEIL - SECTION NOTRE IMPACT (image_6.png)
+   ========================================================================== */
+.impact-section {
+    padding: 80px 5%;
+    background-color: #f1f3f2; /* Fond gris/beige très clair de image_6.png */
+    display: flex;
+    justify-content: center;
+}
+
+.impact-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.impact-header {
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.impact-badge {
+    color: #0d8243; /* Vert forêt */
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.impact-header h2 {
+    font-size: 38px;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+/* Grille à 4 colonnes */
+.impact-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+/* Les cartes carrées de la maquette */
+.impact-card {
+    background-color: rgba(255, 255, 255, 0.6); /* Fond blanc translucide/léger comme sur l'écran */
+    flex: 1;
+    border: 1px solid #cbd5e1;
+    border-radius: 24px; /* Coins très arrondis visibles sur la photo */
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+}
+
+/* Icônes vertes */
+.impact-icon {
+    color: #0d8243;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Style des gros chiffres */
+.impact-number {
+    font-size: 32px;
+    color: #0f172a;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Libellés en gris sous les chiffres */
+.impact-label {
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2x2 sur tablette */
+        gap: 20px;
+    }
+}
+@media (max-width: 576px) {
+    .impact-grid {
+        grid-template-columns: 1fr; /* Tout en ligne sur mobile */
+    }
+}
+
+.programs-section {
+    padding: 80px 8%;
+    background-color: #ffffff; 
+    display: flex;
+    justify-content: center;
+}
+
+.programs-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.programs-header {
+    margin-bottom: 50px;
+}
+
+.programs-subtitle {
+    font-size: 16px;
+    color: #555555;
+    margin-top: 10px;
+}
+
+
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+
+.program-card {
+    background-color: #ffffff;
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+
+.program-card-header {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.card-blue { background-color: #7dd3fc; }   
+.card-grey { background-color: #e2e8f0; }   
+.card-yellow { background-color: #f5ebc1; } 
+
+.program-icon {
+    height: 45px;
+    object-fit: contain;
+}
+
+
+.program-card-body {
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+
+.program-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    width: fit-content;
+    margin-bottom: 15px;
+}
+
+.badge-blue { background-color: #e0f2fe; color: #0369a1; }
+.badge-red { background-color: #fee2e2; color: #b91c1c; }
+.badge-yellow { background-color: #fef9c3; color: #a16207; }
+
+.program-card-body h3 {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.program-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555555;
+    margin-bottom: 35px;
+    flex-grow: 1; 
+}
+
+
+.progress-container {
+    width: 100%;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #777777;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 6px;
+    background-color: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+
+
+.fill-blue { background-color: #3b82f6; }
+.fill-red { background-color: #ef4444; }
+.fill-yellow { background-color: #eab308; }
+
+
+.programs-footer-action {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-all-projects {
+    background-color: var(--accent-yellow);
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-all-projects:hover {
+    background-color: #e5a413;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .programs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .programs-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.testimonials-section {
+    padding: 80px 8%;
+    background-color: #f8f9fa; 
+    display: flex;
+    justify-content: center;
+}
+
+.testimonials-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.testimonials-header {
+    margin-bottom: 50px;
+}
+
+.testimonials-header h2 {
+    font-size: 34px;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+
+.testimonials-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+
+.testimonial-card {
+    background-color: #ffffff;
+    flex: 1;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 40px;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+
+.quote-icon {
+    color: #0d8243; 
+    font-size: 60px;
+    font-family: 'Georgia', serif;
+    line-height: 1;
+    margin-bottom: 10px;
+    transform: rotate(180deg); 
+    width: fit-content;
+}
+
+
+.testimonial-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444444;
+    margin-bottom: 40px;
+    flex-grow: 1; 
+}
+
+.testimonial-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.avatar-blue {
+    background-color: #d1e2f4; 
+    color: #154fa6; 
+}
+
+.user-info h4 {
+    font-size: 16px;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.user-info p {
+    font-size: 13px;
+    color: #666666;
+}
+
+ 
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-arrow {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 24px;
+    color: #0f3460;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    padding-bottom: 4px; 
+}
+
+.btn-arrow:hover {
+    background-color: #154fa6;
+    color: #ffffff;
+    border-color: #154fa6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .testimonials-grid {
+        flex-direction: column;
+        gap: 25px;
+    }
+}
+/* ==========================================================================
+   8. SECTION REJOIGNEZ LE MOUVEMENT (CORRECTION IMAGE_11)
+   ========================================================================== */
+.movement-section {
+    padding: 60px 5%;
+    background-color: #e2e8f0; /* Fond gris de contour présent sur ta capture Figma */
+    display: flex;
+    justify-content: center;
+}
+
+.movement-container {
+    background-color: #154fa6; /* Bleu roi officiel */
+    max-width: 1100px;
+    width: 100%;
+    padding: 60px 40px;
+    text-align: center; /* Centre tous les éléments textuels */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre les blocs enfants comme la div des boutons */
+}
+
+.movement-title {
+    color: #ffffff;
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.movement-text {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 680px; /* Aligne le saut de ligne de façon similaire à Figma */
+    margin-bottom: 35px;
+}
+
+/* Conteneur des boutons */
+.movement-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espace entre les deux boutons */
+}
+
+/* --- BOUTON 1 : DEVENIR BÉNÉVOLE (Plein Jaune) --- */
+.btn-volunteer {
+    background-color: #ffb82b; /* Jaune orangé de image_11 */
+    color: #ffffff; /* Écrit en blanc */
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 28px;
+    border-radius: 6px; /* Léger arrondi visible sur la maquette */
+    transition: background-color 0.2s;
+}
+
+.btn-volunteer:hover {
+    background-color: #e09e1f;
+}
+
+/* --- BOUTON 2 : FAIRE UN DON (Transparent + Bordure) --- */
+.btn-donate {
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 11px 28px; /* 11px pour compenser la bordure de 1px et garder la même hauteur */
+    border-radius: 6px;
+    border: 1.5px solid #ffb82b; /* Bordure jaune assortie */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-donate:hover {
+    background-color: rgba(255, 184, 43, 0.1); /* Léger effet de survol */
+}
+
+.heart-icon {
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .movement-buttons {
+        flex-direction: column; /* Aligne les boutons l'un sous l'autre sur mobile */
+        width: 100%;
+    }
+    .btn-volunteer, .btn-donate {
+        width: 100%;
+        justify-content: center;
+    }
+}
+/* ==========================================================================
+   9. FOOTER (image_12.png)
+   ========================================================================== */
+.main-footer {
+    background-color: #ffffff; /* Fond blanc pur comme sur la maquette */
+    padding: 40px 5% 50px 5%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre parfaitement tous les éléments */
+}
+
+/* --- BOITES DES RÉSEAUX SOCIAUX --- */
+.footer-socials {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.social-box {
+    background-color: #ffb82b; /* Même jaune orangé que le bouton de la section précédente */
+    color: #ffffff; /* Icône blanche */
+    width: 36px;
+    height: 36px;
+    border-radius: 8px; /* Petits carrés arrondis visibles sur image_12 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.social-box:hover {
+    background-color: #e09e1f;
+    transform: scale(1.05);
+}
+
+/* --- LIGNE DE SÉPARATION AVEC POINTS --- */
+.footer-divider {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.divider-line {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #777777; /* La fine ligne noire/grise de la maquette */
+}
+
+/* Les petits points noirs aux extrémités de la ligne */
+.divider-dot {
+    width: 4px;
+    height: 4px;
+    background-color: #000000;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.dot-left { left: 0; }
+.dot-right { right: 0; }
+
+/* --- TEXTE COPYRIGHT --- */
+.footer-copyright {
+    color: #1a1a1a; /* Écrit en noir/foncé sur Figma */
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* Ajustement si écran très petit */
+@media (max-width: 576px) {
+    .footer-copyright {
+        font-size: 13px;
+    }
+}
+/* ==========================================================================
+   10. PAGE À PROPOS - INTRO (image_13.png)
+   ========================================================================== */
+
+.about-page-intro {
+    padding: 100px 5% 60px 5%;
+    background-color: #f8f9fa; /* Fond gris très clair / blanc cassé visible sur Figma */
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.about-intro-container {
+    max-width: 900px; /* On restreint la largeur pour que le texte soit lisible et ressemble à la photo */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre le titre, la ligne et le texte */
+    text-align: center;   /* Centre le texte à l'intérieur de chaque paragraphe */
+}
+
+.about-title {
+    color: #154fa6; /* Bleu roi officiel */
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+/* La petite ligne verte centrée sous le titre */
+.about-title-underline {
+    width: 70px;
+    height: 4px;
+    background-color: #0d8243; /* Vert forêt */
+    border-radius: 2px;
+    margin-bottom: 40px;
+}
+
+/* Style des paragraphes de présentation */
+.about-content-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333333; /* Gris foncé pour une lecture confortable */
+    margin:0 auto; /* Espace entre chaque paragraphe */
+    max-width: 740px;
+    text-align: center;
+}
+
+/* Supprime la marge sur le tout dernier paragraphe */
+.about-content-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 28px;
+    }
+    .about-content-text p {
+        font-size: 15px;
+    }
+}
+/* ==========================================================================
+   11. PAGE À PROPOS - VISION, MISSION, VALEUR (CONFORME FIGMA)
+   ========================================================================= */
+.boussole-section {
+    padding: 60px 5% 80px 5%;
+    background-color: #ffffff; /* 🟢 Le fond général de la page est blanc pur */
+    display: flex;
+    justify-content: center;
+}
+
+.boussole-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.boussole-header {
+    text-align: left;
+    margin-bottom: 35px;
+}
+
+.boussole-badge {
+    color: #0d8243; /* Vert forêt */
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.boussole-header h2 {
+    font-size: 36px;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+/* Grille */
+.boussole-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+/* Les cartes (Gris plus foncé que le fond) */
+.boussole-card {
+    background-color: #f8f9fa; /* 🟢 Les div ont un fond gris plus foncé que la page */
+    flex: 1;
+    border: 1px solid #e2e8f0; /* Bordure fine grise visible */
+    border-radius: 16px; /* Coins arrondis modérés comme Figma */
+    padding: 35px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* En-tête interne */
+.card-top-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+/* Carrés d'icônes discrets */
+.boussole-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+/* Couleurs des icônes et titres */
+.icon-bg-blue { background-color: #bdcad9; color: #1c4f9b; }
+.card-title-blue { color: #1c4f9b; font-size: 22px; font-weight: 700; }
+
+.icon-bg-yellow { background-color: #fefada; color: #f5a623; }
+.card-title-yellow { color: #f5a623; font-size: 22px; font-weight: 700; }
+
+.icon-bg-green { background-color: #99c0a7; color: #166534; }
+.card-title-green { color: #0d8243; font-size: 22px; font-weight: 700; }
+
+/* Style unique pour tous les textes (Vision, Mission et Valeur) */
+.card-text {
+    font-size: 15px;
+    line-height: 1.5; /* Interligne très propre et compact */
+    color: #333333;
+    text-align: left;
+    margin: 0;
+}
+
+/* Gestion du retour à la ligne pour le paragraphe Valeur */
+.card-text strong {
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .boussole-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+/* ==========================================================================
+   12. PAGE À PROPOS - NOTRE ÉQUIPE (image_6.png)
+   ========================================================================== */
+.team-section {
+    padding: 80px 5% 100px 5%;
+    background-color: #ffffff; /* Fond blanc pur */
+    display: flex;
+    justify-content: center;
+}
+
+.team-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* En-tête de la section */
+.team-header {
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.team-badge {
+    color: #0d8243; /* Vert signature */
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.team-header h2 {
+    font-size: 36px;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.team-subtitle {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555555;
+    max-width: 750px; /* Aligné sur la structure compacte de la description */
+}
+
+/* Grille automatique de 4 colonnes */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales */
+    gap: 25px; /* Espace harmonieux entre les cartes */
+}
+
+/* Style de la carte de membre */
+.team-card {
+    background-color: #f8fafc; /* Gris ultra clair de la carte */
+    border: 1px solid #e2e8f0;
+    border-radius: 16px; /* Coins arrondis modérés */
+    overflow: hidden; /* Empêche l'image de dépasser des angles arrondis */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Conteneur de l'image pour gérer les proportions */
+.member-image-wrapper {
+    width: 100%;
+    height: 265px; /* Hauteur fixe pour que toutes les photos s'alignent parfaitement */
+    background-color: #cbd5e1; /* Gris de secours si pas d'image */
+}
+
+.member-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recadre l'image proprement sans la déformer */
+    object-position: center;
+}
+
+/* Zone de texte sous la photo */
+.member-info {
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.member-info h3 {
+    font-size: 17px;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin: 0;
+}
+
+.member-role {
+    color: #0d8243; /* Vert pour le poste */
+    font-size: 14.5px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Responsive : s'adapte sur les écrans plus petits */
+@media (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 par ligne sur tablette */
+    }
+}
+
+@media (max-width: 576px) {
+    .team-grid {
+        grid-template-columns: 1fr; /* 1 par ligne sur mobile */
+    }
+}
+/* ==========================================================================
+   13. PAGE À PROPOS - SECTION PARTENAIRES (image_6.png)
+   ========================================================================== */
+.partners-section {
+    padding: 60px 5% 100px 5%;
+    background-color: #f6f6f6; /* Fond blanc de la page */
+    display: flex;
+    justify-content: center;
+}
+
+.partners-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* En-tête */
+.partners-header {
+    text-align: left;
+    margin-bottom: 35px;
+}
+
+.partners-badge {
+    color: #0d8243; /* Vert signature de SoDES */
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.partners-header h2 {
+    font-size: 36px;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+/* Le grand conteneur bleu/gris */
+.partners-display-box {
+    background-color: #c9d4e9; /* Couleur de fond bleu/gris de image_6.png */
+    border: 1px solid #bac0c7; /* Fine bordure */
+    border-radius: 16px; /* Coins arrondis du grand bloc */
+    padding: 40px 30px;
+    display: flex;
+    justify-content: space-between; /* Aligne les 5 carrés de manière homogène */
+    align-items: center;
+    gap: 20px;
+}
+
+/* Les carrés blancs pour les logos */
+.partner-logo-card {
+    background-color: #ffffff; /* Blanc pur */
+    flex: 1;
+    max-width: 180px; /* Limite la largeur pour garder un format carré */
+    aspect-ratio: 1 / 1; /* Force le bloc à rester un carré parfait (1:1) */
+    border-radius: 12px; /* Coins légèrement arrondis comme sur l'écran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* Légère ombre douce */
+}
+
+/* Ajustement des images de logos à l'intérieur */
+.partner-logo-card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Empêche le logo d'être déformé ou étiré */
+    filter: grayscale(100%); /* Optionnel : met les logos en gris pour un effet pro */
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.partner-logo-card img:hover {
+    filter: grayscale(0%); /* Le logo retrouve sa couleur au survol */
+    opacity: 1;
+}
+
+/* Responsive : Adaptation pour tablettes et mobiles */
+@media (max-width: 992px) {
+    .partners-display-box {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 logos sur la première ligne, 2 sur la deuxième */
+        justify-items: center;
+        gap: 25px;
+    }
+    .partner-logo-card {
+        width: 100%;
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .partners-display-box {
+        grid-template-columns: repeat(2, 1fr); /* 2 logos par ligne sur mobile */
+        padding: 30px 20px;
+    }
+}
+/* ==========================================================================
+   14. PAGE PROJETS RÉALISÉS - BANNIÈRE HERO (image_7.png)
+   ========================================================================== */
+.projects-hero {
+    /* 🟢 On met une marge en haut pour éviter que la bannière passe sous la navbar copiée */
+    margin-top: 90px; 
+    
+    background-color: #1e40af; /* Le bleu soutenu et corporate de ta maquette */
+    width: 100%;
+    padding: 140px 20px 80px 20px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.projects-hero-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.projects-hero h1 {
+    color: #ffffff; /* Texte blanc pur */
+    font-size: 32px; /* Taille adaptée au titre de ta capture */
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+/* Ajustement responsive pour les petits écrans */
+@media (max-width: 768px) {
+    .projects-hero {
+        margin-top: 80px; /* S'adapte si la navbar change de taille sur mobile */
+        padding: 45px 15px;
+    }
+    .projects-hero h1 {
+        font-size: 26px;
+    }
+}
+/* ==========================================================================
+   15. PAGE PROJETS RÉALISÉS - GRILLE ET CARTES (image_7.png)
+   ========================================================================== */
+.projects-list-section {
+    padding: 80px 5%;
+    background-color: #ffffff; /* Fond blanc global de la page */
+    display: flex;
+    justify-content: center;
+}
+
+.projects-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Grille flexible qui s'adapte automatiquement au nombre de cartes */
+.projects-grid {
+    display: grid;
+    /* Crée 3 colonnes si de la place, sinon réduit automatiquement */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 35px; /* Espace équilibré entre les cartes */
+}
+
+/* Style de la carte de projet */
+.project-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f1f5f9;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.project-date {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 18px 0;
+}
+
+/* Conteneur de la photo */
+.project-image-wrapper {
+    width: 100%;
+    height: 240px; /* Ajuste la hauteur de la zone photo selon tes souhaits */
+    background-color: #e2e8f0; /* Fond de secours */
+}
+
+.project-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Remplit le rectangle proprement sans déformer */
+    object-position: center;
+}
+
+/* Zone du contenu sous la photo */
+.project-info {
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1; /* Permet aux boutons de rester alignés même si les titres font des tailles différentes */
+    min-width: 0; /* Permet au conteneur flex de rétrécir en dessous de la taille du texte */
+    word-wrap: break-word; /* Force les mots trop longs à se couper si besoin */
+}
+
+/* Titre bleu en gras */
+.project-info h3 {
+    color: #1e40af; /* Bleu identique au titre ou à la bannière */
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0 0 25px 0; /* Espace important avant le bouton */
+    text-align: left;
+}
+
+.project-info p {
+    max-width: 100%; /* Empêche le paragraphe de dépasser de .project-info */
+    white-space: normal; /* Force le retour à la ligne automatique du texte */
+}
+
+/* Bouton jaune "Voir plus" des cartes projet (le HTML utilise .btn-action-yellow) */
+.project-info .btn-action-yellow,
+.btn-view-more {
+    background-color: #f5a623; /* Couleur jaune orangée Figma */
+    color: #ffffff !important; /* Texte blanc pur */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 6px; /* Coins légèrement arrondis */
+    align-self: flex-start; /* Aligne le bouton à gauche et l'empêche de prendre toute la largeur */
+    transition: background-color 0.2s ease;
+    display: inline-block;
+}
+
+.project-info .btn-action-yellow:hover,
+.btn-view-more:hover {
+    background-color: #e09219; /* Assombrit un poil au survol */
+    transform: none; /* Annule le translateY hérité du style générique du bouton jaune */
+}
+
+/* Responsive pour les petits/moyens écrans */
+@media (max-width: 600px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Une seule carte par ligne sur smartphone */
+        gap: 22px;
+    }
+
+    .project-image-wrapper {
+        height: 200px;
+    }
+
+    .project-info {
+        padding: 20px;
+    }
+}
+/* ==========================================================================
+   16bis. PAGE DÉTAIL D'UN PROJET (p-detail.php)
+   ========================================================================== */
+.project-details-main {
+    margin-top: 0; /* La marge est déjà gérée par .projects-hero au-dessus */
+    background-color: #ffffff;
+    width: 100%;
+    padding: 70px 5% 80px 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.project-details-container {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Galerie d'images : 1 grande image principale + miniatures supplémentaires */
+.project-details-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+/* La première image (principale) occupe toute la largeur */
+.project-details-gallery .project-detail-img:first-child {
+    grid-column: 1 / -1;
+}
+
+.project-detail-img {
+    width: 100%;
+    height: 320px;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: #e2e8f0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.project-detail-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.project-details-content {
+    background-color: #f8f9fa;
+    border-radius: 14px;
+    padding: 35px;
+}
+
+.project-details-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #334155;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .project-details-main {
+        padding: 50px 5% 60px 5%;
+    }
+
+    .project-details-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+    }
+
+    .project-detail-img {
+        height: 220px;
+    }
+
+    .project-details-content {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-details-gallery {
+        grid-template-columns: 1fr; /* Une image par ligne sur très petit écran */
+    }
+
+    .project-detail-img:first-child {
+        height: 240px;
+    }
+
+    .project-detail-img {
+        height: 200px;
+    }
+
+    .project-details-content p {
+        font-size: 15px;
+    }
+}
+
+/* ==========================================================================
+   17. PAGE GALERIE - STRUCTURE STRICTE (3 SECTIONS & 11 IMAGES)
+   ========================================================================== */
+
+/* Structure globale du main */
+.gallery-main-content {
+    margin-top: 90px; /* Évite la superposition sous ton header copié */
+    background-color: #ffffff;
+    width: 100%;
+}
+
+/* --- SECTION 1 : Bannière --- */
+.gallery-hero-section {
+    background-color: #1c4f98; /* Bleu Figma */
+    padding: 140px 20px 80px 20px; 
+    display: flex;
+    justify-content: center;
+}
+
+.gallery-hero-container h1 {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* --- SECTION 2 : Galerie dynamique --- */
+.gallery-grid-section {
+    padding: 60px 5% 80px 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery-content-wrapper {
+    max-width: 1400px;
+    width: 100%;
+}
+
+.gallery-main-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.gallery-item {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    background: #eef2f7;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.gallery-item-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0));
+}
+
+.gallery-item-caption p {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.gallery-empty {
+    text-align: center;
+    color: #64748b;
+    padding: 40px 0;
+}
+
+.pagination-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: #f8fafc;
+    color: #1e40af;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid #dbe4f0;
+    transition: 0.2s ease;
+}
+
+.pagination-btn:hover,
+.pagination-btn.active {
+    background: #1c4f98;
+    color: #fff;
+    border-color: #1c4f98;
+}
+
+@media (max-width: 480px) {
+    .pagination-wrap {
+        gap: 6px;
+    }
+
+    .pagination-btn {
+        min-width: 36px;
+        height: 36px;
+        padding: 0 10px;
+        font-size: 13px;
+    }
+}
+
+/* --- SECTION 3 : Bas de page --- */
+.gallery-footer-section {
+    padding-bottom: 60px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+    .gallery-main-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+    .gallery-item {
+        height: 260px;
+        border-radius: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-main-grid {
+        grid-template-columns: 1fr;
+    }
+    .gallery-item {
+        height: 240px;
+    }
+}
+
+/* ==========================================================================
+   21. MENU BURGER RESPONSIVE PROTOCOLE SÉCURISÉ (ONG SoDES)
+   ========================================================================== */
+
+/* Style par défaut sur Ordinateur (PC) */
+.menu-toggle {
+    display: none; 
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 1010;
+    padding: 5px;
+    
+}
+
+.menu-toggle .bar {
+    width: 28px;
+    height: 3px;
+    background-color: var(--primary-blue, #1c4f98);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+    
+}
+
+.nav-menu-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* 📱 ADAPTATION COMPLÈTE EN MODE MOBILE (MOBILES & TABLETTES) */
+@media (max-width: 992px) {
+    
+    .menu-toggle {
+        display: flex; /* Rend le bouton burger visible */
+    }
+
+    /* Transformation du conteneur en panneau vertical */
+    .nav-menu-container {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Masqué par défaut à gauche */
+        width: 100%;
+        height: 100vh;
+        background-color: #ffffff;
+        
+        /* Espace supérieur pour éviter d'être sous le bandeau ou le logo */
+        padding: 140px 30px 40px 30px; 
+        
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 35px;
+        
+        /* Animation de glissement et opacité */
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+        
+        /* Sécurités d'affichage */
+        z-index: 99999 !important; /* Force l'apparition au-dessus de TOUT le contenu du site */
+        opacity: 0;
+        visibility: hidden;
+        overflow-y: auto; 
+    }
+
+    /* Classe activée lors du clic en JavaScript */
+    .nav-menu-container.open {
+        left: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Réalignement vertical des liens */
+    .nav-links {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        width: 100%;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links li a {
+        font-size: 19px; 
+        padding: 10px 0;
+        display: inline-block;
+        width: 100%;
+        color: var(--primary-blue, #1c4f98);
+    }
+
+    .nav-cta {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .nav-cta .btn-primary-dark {
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+
+    /* Animation des barres en croix (X) */
+    .menu-toggle.open .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+        background-color: #ef4444; 
+    }
+    
+    .menu-toggle.open .bar:nth-child(2) {
+        opacity: 0; 
+    }
+    
+    .menu-toggle.open .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+        background-color: #ef4444;
+    }
+}
+    /* ==========================================================================
+       CORRECTIONS ANTI-DÉBORDEMENT INDISPENSABLES POUR LE RESTES DES PAGES
+       ========================================================================== */
+    
+    /* Évite que les boutons de l'accueil se rentrent dedans sur petit téléphone */
+    .hero-actions {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .btn-action-yellow, .btn-action-outline {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Le bouton "Voir plus" des cartes projet reste compact, pas pleine largeur */
+    .project-info .btn-action-yellow {
+        width: auto;
+        text-align: left;
+    }
+
+    /* Ajustement de la section À Propos */
+    .about-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .about-image-wrapper {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .about-image-bg {
+        width: 100%;
+        max-width: 485px;
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    /* Grille des Programmes */
+    .programs-grid {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+
+/* Fix spécifique pour les très petits écrans (Smartphones de moins de 576px) */
+@media (max-width: 576px) {
+    .navbar {
+        padding: 10px 4%; /* Réduit les espaces pour laisser de la place au logo */
+    }
+    
+    .nav-logo img {
+        height: 42px; /* Réduit un poil le logo pour éviter les télescopages */
+    }
+}
+
+/* ==========================================================================
+   RÉGLAGES RESPONSIVE GLOBAUX POUR TABLETTE ET MOBILE
+   ========================================================================== */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 12px 4%;
+    }
+
+    .nav-logo img {
+        height: 56px;
+    }
+
+    .nav-links-desktop {
+        display: none;
+    }
+
+    .burger-icon-trigger {
+        display: flex;
+    }
+
+    .drawer-action-zone {
+        display: none;
+    }
+
+    .hero-section,
+    .about-section,
+    .impact-section,
+    .programs-section,
+    .testimonials-section,
+    .movement-section,
+    .projects-list-section,
+    .gallery-grid-section,
+    .project-details-main,
+    .contact-hero,
+    .gallery-hero-section {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .hero-section {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .hero-content {
+        padding: 40px 0 30px;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 340px;
+        order: -1;
+    }
+
+    .impact-grid,
+    .programs-grid,
+    .gallery-main-grid,
+    .team-grid,
+    .partners-display-box {
+        gap: 20px;
+    }
+
+    .impact-grid,
+    .programs-grid,
+    .gallery-main-grid,
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .boussole-grid,
+    .testimonials-grid {
+        flex-direction: column;
+    }
+
+    .about-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .about-image-bg {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    .movement-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .hero-description,
+    .about-description,
+    .about-lead,
+    .program-text,
+    .testimonial-text,
+    .movement-text,
+    .footer-copyright {
+        font-size: 15px;
+    }
+
+    .hero-image {
+        height: 300px;
+    }
+
+    .program-card-body,
+    .testimonial-card,
+    .project-info {
+        padding: 24px;
+    }
+
+    .gallery-item {
+        height: 260px;
+    }
+
+    .projects-hero {
+        padding: 50px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 10px 4%;
+    }
+
+    .nav-logo img {
+        height: 48px;
+    }
+
+    .hero-content h1 {
+        font-size: 26px;
+    }
+
+    .hero-description,
+    .about-description,
+    .about-lead,
+    .movement-text,
+    .footer-copyright {
+        font-size: 14px;
+    }
+
+    .hero-actions,
+    .movement-buttons,
+    .footer-socials,
+    .programs-grid,
+    .impact-grid,
+    .gallery-main-grid,
+    .team-grid,
+    .partners-display-box {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .hero-image {
+        height: 240px;
+    }
+
+    .program-card {
+        border-radius: 14px;
+    }
+
+    .gallery-item {
+        height: 220px;
+    }
+
+    .btn-action-yellow,
+    .btn-action-outline,
+    .btn-volunteer,
+    .btn-donate,
+    .btn-all-projects,
+    .drawer-cta-btn,
+    .btn-primary-dark {
+        width: 100%;
+        max-width: none;
+    }
+
+    /* Le bouton "Voir plus" des cartes projet reste compact, même sur mobile */
+    .project-info .btn-action-yellow {
+        width: auto;
+        max-width: none;
+    }
+}
+
+/* ==========================================================================
+   PAGE CONTACT - STYLES STRICTEMENT ALIGNÉS SUR LA MAQUETTE FIGMA
+   ========================================================================== */
+
+/* --- 1. HERO DE LA PAGE --- */
+.contact-hero {
+    margin-top: 0; 
+    background-color: #1c4f98; 
+    width: 100%;
+    /* On augmente le padding-top à 140px pour pousser le titre sous ton header fixe */
+    padding: 200px 20px 60px 20px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* --- SECTION MAP : 90% DE LA LARGEUR ET CENTRÉE --- */
+.contact-map-static-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0; /* Espace vertical au-dessus et en-dessous de la carte */
+}
+
+.contact-map-static-section img {
+    width: 90%; /* Prend exactement 90% de la largeur de l'écran */
+    max-width: 1200px; /* Aligné sur la largeur max de ton formulaire */
+    height: auto; /* Garde les proportions de l'image sans la déformer */
+    display: block;
+}
+
+.contact-hero-container h1 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* --- 2. LAYOUT PRINCIPAL --- */
+.contact-body-section {
+    padding: 60px 8%;
+    background-color: #ffffff;
+}
+
+.contact-body-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+/* --- 3. BLOC GAUCHE : COORDONNÉES --- */
+.contact-info-left {
+    flex: 1;
+}
+
+.green-badge {
+    display: inline-block;
+    color: #2da771; /* Vert Figma */
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.contact-info-left h2 {
+    font-size: 36px;
+    color: #1c4f98;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.contact-info-left .intro-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 35px;
+}
+
+/* Stack des cartes de contact */
+.info-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+}
+
+.info-card-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background-color: #e2e8f0; /* Fond gris Figma */
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+}
+
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+/* Couleurs des cercles d'icônes Figma */
+.phone-icon-bg { background-color: #a3bdae; }
+.email-icon-bg { background-color: #f6cd8c; }
+.address-icon-bg { background-color: #eba389; }
+
+.card-text-content h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 4px 0;
+}
+
+.card-text-content p {
+    font-size: 12px;
+    color: #4a5568;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* --- 4. BLOC DROIT : LE FORMULAIRE BLEU FIGMA --- */
+.contact-form-right {
+    flex: 1.3;
+    background-color: #1d4f9c; /* Le bleu de fond du conteneur */
+    padding: 45px 40px;
+    border-radius: 24px;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.contact-form-right h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.form-required-notice {
+    font-size: 14px;
+    color: #93c5fd;
+    margin-bottom: 30px;
+}
+
+.contact-inner-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* Alignement Nom et Prénom */
+.form-inline-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-inline-row .input-control {
+    flex: 1;
+}
+
+/* Inputs, Textarea et Select */
+.input-control {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-control label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.input-control .star {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.input-control input,
+.input-control textarea,
+.custom-select-field select {
+    width: 100%;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #1e293b;
+    outline: none;
+}
+
+.input-control input::placeholder,
+.input-control textarea::placeholder {
+    color: #94a3b8;
+}
+
+/* Groupe des Tags / Boutons Profils */
+.profile-tags-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.profile-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background-color: rgba(255, 255, 255, 0.15); /* Translucide sur fond bleu */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    font-size: 13px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profile-tag input[type="radio"] {
+    display: none; /* Cache le bouton radio par défaut */
+}
+
+.profile-tag .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    display: inline-block;
+}
+
+/* Tag Actif (Donateur sur ton Figma) */
+.profile-tag.active,
+.profile-tag:has(input:checked) {
+    background-color: #00ba74; /* Vert actif Figma */
+    border-color: #00ba74;
+}
+
+.profile-tag.active .dot,
+.profile-tag:has(input:checked) .dot {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* Select option customisé */
+.custom-select-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231e293b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+    padding-right: 45px;
+    cursor: pointer;
+}
+
+/* Bouton jaune de soumission */
+.submit-yellow-btn {
+    background-color: #f5b324; /* Jaune exact de ton Figma */
+    color: #1d4f9c;
+    font-weight: 700;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    width: 100%; /* S'étend sur toute la largeur comme sur la capture */
+    text-align: center;
+    margin-top: 10px;
+}
+
+.submit-yellow-btn:hover {
+    background-color: #e0a215;
+}
+
+.submit-yellow-btn:active {
+    transform: scale(0.99);
+}
+
+
+/* ==========================================================================
+   5. RESPONSIVE DESIGN POUR LA PAGE CONTACT
+   ========================================================================== */
+@media (max-width: 992px) {
+    .contact-body-container {
+        flex-direction: column;
+        gap: 45px;
+    }
+
+    .contact-info-left, 
+    .contact-form-right {
+        width: 100%;
+        flex: none;
+    }
+    
+    .info-cards-stack {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-body-section {
+        padding: 40px 5%;
+    }
+
+    .contact-hero h1 {
+        font-size: 2rem;
+    }
+
+    .form-inline-row {
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .contact-form-right {
+        padding: 30px 20px;
+    }
+
+    .profile-tags-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .profile-tag {
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hero-actions {
+    display: flex;       /* Aligne les éléments enfants sur la même ligne */
+    flex-direction: row; /* Force l'alignement horizontal */
+    gap: 15px;           /* Espace de 15px entre les deux boutons */
+    align-items: center; /* Aligne verticalement les boutons au centre */
+    flex-wrap: nowrap;   /* Empêche les boutons de sauter à la ligne */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fade-in-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUpEffect 0.8s ease-out forwards;
+    }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    @keyframes fadeInUpEffect {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
